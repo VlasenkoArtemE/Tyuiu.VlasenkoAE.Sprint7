@@ -115,7 +115,6 @@
             // 
             // buttonSaveData_VAE
             // 
-            buttonSaveData_VAE.Enabled = false;
             buttonSaveData_VAE.Image = (Image)resources.GetObject("buttonSaveData_VAE.Image");
             buttonSaveData_VAE.Location = new Point(10, 152);
             buttonSaveData_VAE.Name = "buttonSaveData_VAE";
@@ -123,7 +122,6 @@
             buttonSaveData_VAE.TabIndex = 1;
             toolTipButtons.SetToolTip(buttonSaveData_VAE, "Сохранить файл в формате CSV");
             buttonSaveData_VAE.UseVisualStyleBackColor = true;
-            buttonSaveData_VAE.Click += buttonSaveData_VAE_Click;
             // 
             // buttonLoadData_VAE
             // 
@@ -175,7 +173,6 @@
             dataGridViewInPut_VAE.RowHeadersWidth = 51;
             dataGridViewInPut_VAE.Size = new Size(528, 684);
             dataGridViewInPut_VAE.TabIndex = 0;
-            dataGridViewInPut_VAE.CellContentClick += dataGridInPut_VAE_CellContentClick;
             // 
             // groupBoxWorkData_VAE
             // 
@@ -200,7 +197,6 @@
             buttonPriceHistogram_VAE.Size = new Size(169, 99);
             buttonPriceHistogram_VAE.TabIndex = 3;
             buttonPriceHistogram_VAE.UseVisualStyleBackColor = true;
-            buttonPriceHistogram_VAE.Click += buttonPriceHistogram_VAE_Click;
             // 
             // buttonMaxPrice_VAE
             // 
@@ -233,10 +229,6 @@
             dataGridViewOutPut_VAE.RowHeadersWidth = 51;
             dataGridViewOutPut_VAE.Size = new Size(316, 684);
             dataGridViewOutPut_VAE.TabIndex = 0;
-            // 
-            // openFileDialogData_VAE
-            // 
-            openFileDialogData_VAE.FileName = "openFileDialogData_VAE";
             // 
             // FormMain
             // 

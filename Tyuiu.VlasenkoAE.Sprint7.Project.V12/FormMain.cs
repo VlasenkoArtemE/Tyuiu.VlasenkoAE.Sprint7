@@ -42,21 +42,6 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
 
         }
 
-        private void buttonSaveData_VAE_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonPriceHistogram_VAE_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridInPut_VAE_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void buttonLoadData_VAE_Click(object sender, EventArgs e)
         {
             openFileDialogData_VAE.ShowDialog();
@@ -84,7 +69,6 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
                 }
             }
 
-            buttonSaveData_VAE.Enabled = true;
             buttonMaxPrice_VAE.Enabled = true;
             buttonMinPrice_VAE.Enabled = true;
             buttonPriceHistogram_VAE.Enabled = true;
