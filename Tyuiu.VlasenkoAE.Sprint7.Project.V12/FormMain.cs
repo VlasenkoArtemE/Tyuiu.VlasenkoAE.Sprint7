@@ -1,5 +1,8 @@
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using Tyuiu.VlasenkoAE.Sprint7.Project.V12.Lib;
+using System.IO;
 
 namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
 {
@@ -14,11 +17,11 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
         }
 
         DataService ds = new DataService();
-        static int rows;
-        static int columns;
-        static string openFilePath;
+        private int rows;
+        private int columns;
+        private string openFilePath;
 
-        public static int[,] LoadFromFileData(string filePath)
+        public int[,] LoadFromFileData(string filePath)
         {
             string fileData = File.ReadAllText(filePath);
 
@@ -120,7 +123,7 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
 
         private void buttonMaxPrice_VAE_MouseEnter(object sender, EventArgs e)
         {
-            toolTipButtons.ToolTipTitle = "Максимальнвя цена";
+            toolTipButtons.ToolTipTitle = "Максимальная цена";
         }
 
         private void buttonMinPrice_VAE_MouseEnter(object sender, EventArgs e)
@@ -147,6 +150,50 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
             value = ds.GetMinPrice(openFilePath);
 
             textBoxResult_VAE.Text = value.ToString();
+        }
+
+        private void buttonPriceHistogram_VAE_Click(object sender, EventArgs e)
+        {
+            int[,] arrayValues = LoadFromFileData(openFilePath);
+
+            chartResult_VAE.Series.Clear();
+            chartResult_VAE.Titles.Clear();
+            chartResult_VAE.ChartAreas.Clear();
+
+            ChartArea chartArea = new ChartArea("MainArea");
+            chartResult_VAE.ChartAreas.Add(chartArea);
+
+            chartResult_VAE.Titles.Add("Гистограмма цен");
+
+            Series series = new Series("Цены");
+            series.ChartType = SeriesChartType.Column;
+            series.IsValueShownAsLabel = true;
+            series.Color = Color.Blue;
+
+            int rows = arrayValues.GetLength(0);
+            int priceColumn = 4;
+
+            for (int i = 0; i < rows; i++)
+            {
+                int price = arrayValues[i, priceColumn];
+                DataPoint point = new DataPoint();        // Для отображения каждого столбца отдельно
+                point.SetValueXY(i, price);               // Указываем индекс как X значение
+                point.AxisLabel = $"Проц. {i + 1}";       // Отдельно задаём подпись
+                point.Label = price.ToString();           // Значение над столбцом
+                series.Points.Add(point);
+            }
+
+            chartResult_VAE.Series.Add(series);
+
+            chartResult_VAE.ChartAreas[0].AxisX.Title = "Процессоры";
+            chartResult_VAE.ChartAreas[0].AxisY.Title = "Цена";
+            chartResult_VAE.ChartAreas[0].AxisX.Interval = 1;
+            chartResult_VAE.ChartAreas[0].AxisX.LabelStyle.Angle = -45;
+
+            chartResult_VAE.ChartAreas[0].AxisX.MajorGrid.Enabled = true;
+            chartResult_VAE.ChartAreas[0].AxisY.MajorGrid.Enabled = true;
+
+            chartResult_VAE.ChartAreas[0].RecalculateAxesScale();
         }
     }
 }

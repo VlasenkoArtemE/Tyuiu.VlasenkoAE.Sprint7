@@ -30,6 +30,9 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panelButtons_VAE = new Panel();
             groupBoxInfoButtons_VAE = new GroupBox();
             buttonInfo_VAE = new Button();
@@ -41,6 +44,7 @@
             groupBoxData_VAE = new GroupBox();
             dataGridViewInPut_VAE = new DataGridView();
             groupBoxWorkData_VAE = new GroupBox();
+            chartResult_VAE = new System.Windows.Forms.DataVisualization.Charting.Chart();
             textBoxResult_VAE = new TextBox();
             buttonPriceHistogram_VAE = new Button();
             buttonMaxPrice_VAE = new Button();
@@ -59,6 +63,7 @@
             groupBoxData_VAE.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewInPut_VAE).BeginInit();
             groupBoxWorkData_VAE.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chartResult_VAE).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOutPut_VAE).BeginInit();
             SuspendLayout();
             // 
@@ -187,6 +192,7 @@
             // 
             // groupBoxWorkData_VAE
             // 
+            groupBoxWorkData_VAE.Controls.Add(chartResult_VAE);
             groupBoxWorkData_VAE.Controls.Add(textBoxResult_VAE);
             groupBoxWorkData_VAE.Controls.Add(buttonPriceHistogram_VAE);
             groupBoxWorkData_VAE.Controls.Add(buttonMaxPrice_VAE);
@@ -199,6 +205,22 @@
             groupBoxWorkData_VAE.TabIndex = 0;
             groupBoxWorkData_VAE.TabStop = false;
             groupBoxWorkData_VAE.Text = "Работа с данными";
+            // 
+            // chartResult_VAE
+            // 
+            chartResult_VAE.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            chartArea1.Name = "ChartArea1";
+            chartResult_VAE.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            chartResult_VAE.Legends.Add(legend1);
+            chartResult_VAE.Location = new Point(200, 267);
+            chartResult_VAE.Name = "chartResult_VAE";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            chartResult_VAE.Series.Add(series1);
+            chartResult_VAE.Size = new Size(375, 255);
+            chartResult_VAE.TabIndex = 5;
             // 
             // textBoxResult_VAE
             // 
@@ -219,6 +241,7 @@
             buttonPriceHistogram_VAE.TabIndex = 3;
             toolTipButtons.SetToolTip(buttonPriceHistogram_VAE, "Вывести гистограмму цен");
             buttonPriceHistogram_VAE.UseVisualStyleBackColor = true;
+            buttonPriceHistogram_VAE.Click += buttonPriceHistogram_VAE_Click;
             buttonPriceHistogram_VAE.MouseEnter += buttonPriceHistogram_VAE_MouseEnter;
             // 
             // buttonMaxPrice_VAE
@@ -256,7 +279,7 @@
             dataGridViewOutPut_VAE.Location = new Point(200, 23);
             dataGridViewOutPut_VAE.Name = "dataGridViewOutPut_VAE";
             dataGridViewOutPut_VAE.RowHeadersWidth = 51;
-            dataGridViewOutPut_VAE.Size = new Size(375, 684);
+            dataGridViewOutPut_VAE.Size = new Size(375, 228);
             dataGridViewOutPut_VAE.TabIndex = 0;
             // 
             // toolTipButtons
@@ -284,8 +307,14 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewInPut_VAE).EndInit();
             groupBoxWorkData_VAE.ResumeLayout(false);
             groupBoxWorkData_VAE.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)chartResult_VAE).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOutPut_VAE).EndInit();
             ResumeLayout(false);
+        }
+
+        private void ButtonPriceHistogram_VAE_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -309,5 +338,6 @@
         private SaveFileDialog saveFileDialogData_VAE;
         private ToolTip toolTipButtons;
         private TextBox textBoxResult_VAE;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartResult_VAE;
     }
 }
