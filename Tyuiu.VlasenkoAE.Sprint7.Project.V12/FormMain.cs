@@ -51,11 +51,6 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
 
         }
 
-        private void buttonPriceHistogram_VAE_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void dataGridInPut_VAE_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
