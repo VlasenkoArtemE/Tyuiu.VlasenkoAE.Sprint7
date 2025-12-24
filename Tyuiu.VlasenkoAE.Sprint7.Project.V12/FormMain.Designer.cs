@@ -41,6 +41,7 @@
             groupBoxData_VAE = new GroupBox();
             dataGridViewInPut_VAE = new DataGridView();
             groupBoxWorkData_VAE = new GroupBox();
+            textBoxResult_VAE = new TextBox();
             buttonPriceHistogram_VAE = new Button();
             buttonMaxPrice_VAE = new Button();
             buttonMinPrice_VAE = new Button();
@@ -90,7 +91,10 @@
             buttonInfo_VAE.Name = "buttonInfo_VAE";
             buttonInfo_VAE.Size = new Size(169, 98);
             buttonInfo_VAE.TabIndex = 1;
+            toolTipButtons.SetToolTip(buttonInfo_VAE, "О разработчике программы");
             buttonInfo_VAE.UseVisualStyleBackColor = true;
+            buttonInfo_VAE.Click += buttonInfo_VAE_Click;
+            buttonInfo_VAE.MouseEnter += buttonInfo_VAE_MouseEnter;
             // 
             // buttonGuide_VAE
             // 
@@ -99,7 +103,10 @@
             buttonGuide_VAE.Name = "buttonGuide_VAE";
             buttonGuide_VAE.Size = new Size(169, 99);
             buttonGuide_VAE.TabIndex = 0;
+            toolTipButtons.SetToolTip(buttonGuide_VAE, "Краткое руководство по работе с программой");
             buttonGuide_VAE.UseVisualStyleBackColor = true;
+            buttonGuide_VAE.Click += buttonGuide_VAE_Click;
+            buttonGuide_VAE.MouseEnter += buttonGuide_VAE_MouseEnter;
             // 
             // groupBoxInsrtumentButtons_VAE
             // 
@@ -122,6 +129,7 @@
             buttonSaveData_VAE.TabIndex = 1;
             toolTipButtons.SetToolTip(buttonSaveData_VAE, "Сохранить файл в формате CSV");
             buttonSaveData_VAE.UseVisualStyleBackColor = true;
+            buttonSaveData_VAE.MouseEnter += buttonSaveData_VAE_MouseEnter;
             // 
             // buttonLoadData_VAE
             // 
@@ -133,6 +141,7 @@
             toolTipButtons.SetToolTip(buttonLoadData_VAE, "Открыть файл для обработки данных в фомате CSV");
             buttonLoadData_VAE.UseVisualStyleBackColor = true;
             buttonLoadData_VAE.Click += buttonLoadData_VAE_Click;
+            buttonLoadData_VAE.MouseEnter += buttonLoadData_VAE_MouseEnter;
             // 
             // splitContainerInOutPutData_VAE
             // 
@@ -147,8 +156,8 @@
             // splitContainerInOutPutData_VAE.Panel2
             // 
             splitContainerInOutPutData_VAE.Panel2.Controls.Add(groupBoxWorkData_VAE);
-            splitContainerInOutPutData_VAE.Size = new Size(1057, 710);
-            splitContainerInOutPutData_VAE.SplitterDistance = 534;
+            splitContainerInOutPutData_VAE.Size = new Size(1244, 710);
+            splitContainerInOutPutData_VAE.SplitterDistance = 662;
             splitContainerInOutPutData_VAE.TabIndex = 1;
             // 
             // groupBoxData_VAE
@@ -157,13 +166,14 @@
             groupBoxData_VAE.Dock = DockStyle.Fill;
             groupBoxData_VAE.Location = new Point(0, 0);
             groupBoxData_VAE.Name = "groupBoxData_VAE";
-            groupBoxData_VAE.Size = new Size(534, 710);
+            groupBoxData_VAE.Size = new Size(662, 710);
             groupBoxData_VAE.TabIndex = 0;
             groupBoxData_VAE.TabStop = false;
-            groupBoxData_VAE.Text = "Данные";
+            groupBoxData_VAE.Text = "Данные (Номер процессора | Частота | Макс. Частота | Кол-во ядер | Цена)";
             // 
             // dataGridViewInPut_VAE
             // 
+            dataGridViewInPut_VAE.AllowUserToAddRows = false;
             dataGridViewInPut_VAE.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewInPut_VAE.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewInPut_VAE.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -171,11 +181,13 @@
             dataGridViewInPut_VAE.Location = new Point(3, 23);
             dataGridViewInPut_VAE.Name = "dataGridViewInPut_VAE";
             dataGridViewInPut_VAE.RowHeadersWidth = 51;
-            dataGridViewInPut_VAE.Size = new Size(528, 684);
+            dataGridViewInPut_VAE.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            dataGridViewInPut_VAE.Size = new Size(656, 684);
             dataGridViewInPut_VAE.TabIndex = 0;
             // 
             // groupBoxWorkData_VAE
             // 
+            groupBoxWorkData_VAE.Controls.Add(textBoxResult_VAE);
             groupBoxWorkData_VAE.Controls.Add(buttonPriceHistogram_VAE);
             groupBoxWorkData_VAE.Controls.Add(buttonMaxPrice_VAE);
             groupBoxWorkData_VAE.Controls.Add(buttonMinPrice_VAE);
@@ -183,10 +195,19 @@
             groupBoxWorkData_VAE.Dock = DockStyle.Fill;
             groupBoxWorkData_VAE.Location = new Point(0, 0);
             groupBoxWorkData_VAE.Name = "groupBoxWorkData_VAE";
-            groupBoxWorkData_VAE.Size = new Size(519, 710);
+            groupBoxWorkData_VAE.Size = new Size(578, 710);
             groupBoxWorkData_VAE.TabIndex = 0;
             groupBoxWorkData_VAE.TabStop = false;
             groupBoxWorkData_VAE.Text = "Работа с данными";
+            // 
+            // textBoxResult_VAE
+            // 
+            textBoxResult_VAE.Location = new Point(13, 383);
+            textBoxResult_VAE.Multiline = true;
+            textBoxResult_VAE.Name = "textBoxResult_VAE";
+            textBoxResult_VAE.ReadOnly = true;
+            textBoxResult_VAE.Size = new Size(169, 31);
+            textBoxResult_VAE.TabIndex = 4;
             // 
             // buttonPriceHistogram_VAE
             // 
@@ -196,7 +217,9 @@
             buttonPriceHistogram_VAE.Name = "buttonPriceHistogram_VAE";
             buttonPriceHistogram_VAE.Size = new Size(169, 99);
             buttonPriceHistogram_VAE.TabIndex = 3;
+            toolTipButtons.SetToolTip(buttonPriceHistogram_VAE, "Вывести гистограмму цен");
             buttonPriceHistogram_VAE.UseVisualStyleBackColor = true;
+            buttonPriceHistogram_VAE.MouseEnter += buttonPriceHistogram_VAE_MouseEnter;
             // 
             // buttonMaxPrice_VAE
             // 
@@ -206,7 +229,10 @@
             buttonMaxPrice_VAE.Name = "buttonMaxPrice_VAE";
             buttonMaxPrice_VAE.Size = new Size(169, 99);
             buttonMaxPrice_VAE.TabIndex = 2;
+            toolTipButtons.SetToolTip(buttonMaxPrice_VAE, "Вывести максимальную цену из предложенных вариантов");
             buttonMaxPrice_VAE.UseVisualStyleBackColor = true;
+            buttonMaxPrice_VAE.Click += buttonMaxPrice_VAE_Click;
+            buttonMaxPrice_VAE.MouseEnter += buttonMaxPrice_VAE_MouseEnter;
             // 
             // buttonMinPrice_VAE
             // 
@@ -216,7 +242,10 @@
             buttonMinPrice_VAE.Name = "buttonMinPrice_VAE";
             buttonMinPrice_VAE.Size = new Size(169, 99);
             buttonMinPrice_VAE.TabIndex = 2;
+            toolTipButtons.SetToolTip(buttonMinPrice_VAE, "Вывести минимальную цену из предложеныых вариантов");
             buttonMinPrice_VAE.UseVisualStyleBackColor = true;
+            buttonMinPrice_VAE.Click += buttonMinPrice_VAE_Click;
+            buttonMinPrice_VAE.MouseEnter += buttonMinPrice_VAE_MouseEnter;
             // 
             // dataGridViewOutPut_VAE
             // 
@@ -227,14 +256,18 @@
             dataGridViewOutPut_VAE.Location = new Point(200, 23);
             dataGridViewOutPut_VAE.Name = "dataGridViewOutPut_VAE";
             dataGridViewOutPut_VAE.RowHeadersWidth = 51;
-            dataGridViewOutPut_VAE.Size = new Size(316, 684);
+            dataGridViewOutPut_VAE.Size = new Size(375, 684);
             dataGridViewOutPut_VAE.TabIndex = 0;
+            // 
+            // toolTipButtons
+            // 
+            toolTipButtons.IsBalloon = true;
             // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1247, 710);
+            ClientSize = new Size(1434, 710);
             Controls.Add(splitContainerInOutPutData_VAE);
             Controls.Add(panelButtons_VAE);
             Name = "FormMain";
@@ -250,6 +283,7 @@
             groupBoxData_VAE.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewInPut_VAE).EndInit();
             groupBoxWorkData_VAE.ResumeLayout(false);
+            groupBoxWorkData_VAE.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOutPut_VAE).EndInit();
             ResumeLayout(false);
         }
@@ -274,5 +308,6 @@
         private OpenFileDialog openFileDialogData_VAE;
         private SaveFileDialog saveFileDialogData_VAE;
         private ToolTip toolTipButtons;
+        private TextBox textBoxResult_VAE;
     }
 }

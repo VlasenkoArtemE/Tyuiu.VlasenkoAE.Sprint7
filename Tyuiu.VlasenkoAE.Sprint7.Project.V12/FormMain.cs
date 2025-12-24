@@ -1,3 +1,6 @@
+using System.Windows.Forms;
+using Tyuiu.VlasenkoAE.Sprint7.Project.V12.Lib;
+
 namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
 {
     public partial class FormMain : Form
@@ -10,6 +13,7 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
             saveFileDialogData_VAE.Filter = "Значения, разделённые запятыми(*.csv)|*.csv|Все файлы(*.*)|*.*";
         }
 
+        DataService ds = new DataService();
         static int rows;
         static int columns;
         static string openFilePath;
@@ -42,6 +46,21 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
 
         }
 
+        private void buttonSaveData_VAE_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonPriceHistogram_VAE_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridInPut_VAE_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         private void buttonLoadData_VAE_Click(object sender, EventArgs e)
         {
             openFileDialogData_VAE.ShowDialog();
@@ -52,13 +71,11 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
 
             dataGridViewInPut_VAE.ColumnCount = columns;
             dataGridViewInPut_VAE.RowCount = rows;
-            dataGridViewOutPut_VAE.ColumnCount = columns;
-            dataGridViewOutPut_VAE.RowCount = rows;
 
             for (int i = 0; i < columns; i++)
             {
                 dataGridViewInPut_VAE.Columns[i].Width = 100;
-                dataGridViewOutPut_VAE.Columns[i].Width = 100;
+                dataGridViewInPut_VAE.Columns[0].Width = 100;
             }
 
             for (int r = 0; r < rows; r++)
@@ -72,6 +89,69 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
             buttonMaxPrice_VAE.Enabled = true;
             buttonMinPrice_VAE.Enabled = true;
             buttonPriceHistogram_VAE.Enabled = true;
+        }
+
+        private void buttonGuide_VAE_Click(object sender, EventArgs e)
+        {
+            FormGuide formGuide = new FormGuide();
+            formGuide.ShowDialog();
+        }
+
+        private void buttonInfo_VAE_Click(object sender, EventArgs e)
+        {
+            FormInfo formInfo = new FormInfo();
+            formInfo.ShowDialog();
+        }
+
+        private void buttonLoadData_VAE_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipButtons.ToolTipTitle = "Открыть файл";
+        }
+
+        private void buttonSaveData_VAE_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipButtons.ToolTipTitle = "Сохранить файл";
+        }
+
+        private void buttonGuide_VAE_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipButtons.ToolTipTitle = "Руководство пользователя";
+        }
+
+        private void buttonInfo_VAE_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipButtons.ToolTipTitle = "О программе";
+        }
+
+        private void buttonMaxPrice_VAE_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipButtons.ToolTipTitle = "Максимальнвя цена";
+        }
+
+        private void buttonMinPrice_VAE_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipButtons.ToolTipTitle = "Минимальная цена";
+        }
+
+        private void buttonPriceHistogram_VAE_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipButtons.ToolTipTitle = "Гистограмма цен";
+        }
+
+        private void buttonMaxPrice_VAE_Click(object sender, EventArgs e)
+        {
+            int value = 0;
+            value = ds.GetMaxPrice(openFilePath);
+
+            textBoxResult_VAE.Text = value.ToString();
+        }
+
+        private void buttonMinPrice_VAE_Click(object sender, EventArgs e)
+        {
+            int value = 0;
+            value = ds.GetMinPrice(openFilePath);
+
+            textBoxResult_VAE.Text = value.ToString();
         }
     }
 }
