@@ -26,8 +26,6 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12.Test
             int wait = 31500;
 
             Assert.AreEqual(wait, result);
-
-            File.Delete(testFile);
         }
 
         [TestMethod]
@@ -48,8 +46,6 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12.Test
             int wait = 6800;
 
             Assert.AreEqual(wait, result);
-
-            File.Delete(testFile);
         }
     }
 }

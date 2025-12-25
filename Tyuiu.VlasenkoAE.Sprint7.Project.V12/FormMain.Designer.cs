@@ -49,7 +49,6 @@
             buttonPriceHistogram_VAE = new Button();
             buttonMaxPrice_VAE = new Button();
             buttonMinPrice_VAE = new Button();
-            dataGridViewOutPut_VAE = new DataGridView();
             openFileDialogData_VAE = new OpenFileDialog();
             saveFileDialogData_VAE = new SaveFileDialog();
             toolTipButtons = new ToolTip(components);
@@ -64,7 +63,6 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewInPut_VAE).BeginInit();
             groupBoxWorkData_VAE.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chartResult_VAE).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewOutPut_VAE).BeginInit();
             SuspendLayout();
             // 
             // panelButtons_VAE
@@ -197,7 +195,6 @@
             groupBoxWorkData_VAE.Controls.Add(buttonPriceHistogram_VAE);
             groupBoxWorkData_VAE.Controls.Add(buttonMaxPrice_VAE);
             groupBoxWorkData_VAE.Controls.Add(buttonMinPrice_VAE);
-            groupBoxWorkData_VAE.Controls.Add(dataGridViewOutPut_VAE);
             groupBoxWorkData_VAE.Dock = DockStyle.Fill;
             groupBoxWorkData_VAE.Location = new Point(0, 0);
             groupBoxWorkData_VAE.Name = "groupBoxWorkData_VAE";
@@ -270,18 +267,6 @@
             buttonMinPrice_VAE.Click += buttonMinPrice_VAE_Click;
             buttonMinPrice_VAE.MouseEnter += buttonMinPrice_VAE_MouseEnter;
             // 
-            // dataGridViewOutPut_VAE
-            // 
-            dataGridViewOutPut_VAE.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridViewOutPut_VAE.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewOutPut_VAE.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewOutPut_VAE.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewOutPut_VAE.Location = new Point(200, 23);
-            dataGridViewOutPut_VAE.Name = "dataGridViewOutPut_VAE";
-            dataGridViewOutPut_VAE.RowHeadersWidth = 51;
-            dataGridViewOutPut_VAE.Size = new Size(375, 228);
-            dataGridViewOutPut_VAE.TabIndex = 0;
-            // 
             // toolTipButtons
             // 
             toolTipButtons.IsBalloon = true;
@@ -295,7 +280,6 @@
             Controls.Add(panelButtons_VAE);
             Name = "FormMain";
             Text = "Персональные ЭВМ";
-            Load += Form1_Load;
             panelButtons_VAE.ResumeLayout(false);
             groupBoxInfoButtons_VAE.ResumeLayout(false);
             groupBoxInsrtumentButtons_VAE.ResumeLayout(false);
@@ -308,7 +292,6 @@
             groupBoxWorkData_VAE.ResumeLayout(false);
             groupBoxWorkData_VAE.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)chartResult_VAE).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewOutPut_VAE).EndInit();
             ResumeLayout(false);
         }
 
@@ -331,7 +314,6 @@
         private Button buttonSaveData_VAE;
         private DataGridView dataGridViewInPut_VAE;
         private Button buttonMinPrice_VAE;
-        private DataGridView dataGridViewOutPut_VAE;
         private Button buttonMaxPrice_VAE;
         private Button buttonPriceHistogram_VAE;
         private OpenFileDialog openFileDialogData_VAE;
