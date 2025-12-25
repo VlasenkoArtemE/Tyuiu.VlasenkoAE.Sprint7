@@ -44,19 +44,43 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
             return arrayValues;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonSaveData_VAE_Click(object sender, EventArgs e)
         {
+            saveFileDialogData_VAE.FileName = "";
+            saveFileDialogData_VAE.InitialDirectory = Directory.GetCurrentDirectory();
+            saveFileDialogData_VAE.ShowDialog();
 
-        }
+            string path = saveFileDialogData_VAE.FileName;
 
-        private void dataGridInPut_VAE_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+            FileInfo fileInfo = new FileInfo(path);
+            bool fileExists = fileInfo.Exists;
 
+            if (fileExists)
+            {
+                File.Delete(path);
+            }
+
+            int rows = dataGridViewInPut_VAE.RowCount;
+            int columns = dataGridViewInPut_VAE.ColumnCount;
+
+            string str = "";
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    if (j != columns - 1)
+                    {
+                        str = str + dataGridViewInPut_VAE.Rows[i].Cells[j].Value + ";";
+                    }
+                    else
+                    {
+                        str = str + dataGridViewInPut_VAE.Rows[i].Cells[j].Value;
+                    }
+                }
+                File.AppendAllText(path, str + Environment.NewLine);
+                str = "";
+            }
         }
 
         private void buttonLoadData_VAE_Click(object sender, EventArgs e)
@@ -84,9 +108,43 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
                 }
             }
 
+            foreach (DataGridViewColumn column in dataGridViewInPut_VAE.Columns)
+            {
+                column.ValueType = typeof(int);
+            }
+
+            buttonDeleteRow_VAE.Enabled = true;
+            buttonAddRow_VAE.Enabled = true;
             buttonMaxPrice_VAE.Enabled = true;
             buttonMinPrice_VAE.Enabled = true;
             buttonPriceHistogram_VAE.Enabled = true;
+            buttonSaveData_VAE.Enabled = true;
+        }
+
+        private int[,] GetDataFromGridView()
+        {
+            int rowCount = dataGridViewInPut_VAE.Rows.Count;
+            int colCount = dataGridViewInPut_VAE.Columns.Count;
+
+            int[,] arrayValues = new int[rowCount, colCount];
+
+            for (int r = 0; r < rowCount; r++)
+            {
+                for (int c = 0; c < colCount; c++)
+                {
+                    var cellValue = dataGridViewInPut_VAE.Rows[r].Cells[c].Value;
+                    if (cellValue != null && int.TryParse(cellValue.ToString(), out int value))
+                    {
+                        arrayValues[r, c] = value;
+                    }
+                    else
+                    {
+                        arrayValues[r, c] = 0;
+                    }
+                }
+            }
+
+            return arrayValues;
         }
 
         private void buttonGuide_VAE_Click(object sender, EventArgs e)
@@ -138,23 +196,27 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
 
         private void buttonMaxPrice_VAE_Click(object sender, EventArgs e)
         {
+            int[,] arrayValues = GetDataFromGridView();
+
             int value = 0;
-            value = ds.GetMaxPrice(openFilePath);
+            value = ds.GetMaxPrice(arrayValues);
 
             textBoxResult_VAE.Text = value.ToString();
         }
 
         private void buttonMinPrice_VAE_Click(object sender, EventArgs e)
         {
+            int[,] arrayValues = GetDataFromGridView();
+
             int value = 0;
-            value = ds.GetMinPrice(openFilePath);
+            value = ds.GetMinPrice(arrayValues);
 
             textBoxResult_VAE.Text = value.ToString();
         }
 
         private void buttonPriceHistogram_VAE_Click(object sender, EventArgs e)
         {
-            int[,] arrayValues = LoadFromFileData(openFilePath);
+            int[,] arrayValues = GetDataFromGridView();
 
             chartResult_VAE.Series.Clear();
             chartResult_VAE.Titles.Clear();
@@ -176,10 +238,10 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
             for (int i = 0; i < rows; i++)
             {
                 int price = arrayValues[i, priceColumn];
-                DataPoint point = new DataPoint();        // Для отображения каждого столбца отдельно
-                point.SetValueXY(i, price);               // Указываем индекс как X значение
-                point.AxisLabel = $"Проц. {i + 1}";       // Отдельно задаём подпись
-                point.Label = price.ToString();           // Значение над столбцом
+                DataPoint point = new DataPoint();                // Для отображения каждого столбца отдельно
+                point.SetValueXY(i, price);                       // Указываем индекс как X значение
+                point.AxisLabel = $"Проц. {arrayValues[i, 0]}";   // Отдельно задаём подпись
+                point.Label = price.ToString();                   // Значение над столбцом
                 series.Points.Add(point);
             }
 
@@ -194,6 +256,34 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
             chartResult_VAE.ChartAreas[0].AxisY.MajorGrid.Enabled = true;
 
             chartResult_VAE.ChartAreas[0].RecalculateAxesScale();
+        }
+
+        private void buttonAddRow_VAE_Click(object sender, EventArgs e)
+        {
+            dataGridViewInPut_VAE.Rows.Add(new object[dataGridViewInPut_VAE.Columns.Count]);
+        }
+
+        private void buttonDeleteRow_VAE_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewInPut_VAE.Rows.Count > 1)
+            {
+                int lastIndex = dataGridViewInPut_VAE.Rows.Count - 1;
+
+                if (lastIndex >= 0)   // Проверяем, что индекс валидный
+                {
+                    dataGridViewInPut_VAE.Rows.RemoveAt(lastIndex);
+                }
+            }
+        }
+
+        private void buttonAddRow_VAE_MouseHover(object sender, EventArgs e)
+        {
+            toolTipButtons.ToolTipTitle = "Добавить строку";
+        }
+
+        private void buttonDeleteRow_VAE_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipButtons.ToolTipTitle = "Удалить строку";
         }
     }
 }
