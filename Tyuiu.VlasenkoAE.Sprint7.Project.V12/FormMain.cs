@@ -44,45 +44,6 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
             return arrayValues;
         }
 
-        private void buttonSaveData_VAE_Click(object sender, EventArgs e)
-        {
-            saveFileDialogData_VAE.FileName = "";
-            saveFileDialogData_VAE.InitialDirectory = Directory.GetCurrentDirectory();
-            saveFileDialogData_VAE.ShowDialog();
-
-            string path = saveFileDialogData_VAE.FileName;
-
-            FileInfo fileInfo = new FileInfo(path);
-            bool fileExists = fileInfo.Exists;
-
-            if (fileExists)
-            {
-                File.Delete(path);
-            }
-
-            int rows = dataGridViewInPut_VAE.RowCount;
-            int columns = dataGridViewInPut_VAE.ColumnCount;
-
-            string str = "";
-
-            for (int i = 0; i < rows; i++)
-            {
-                for (int j = 0; j < columns; j++)
-                {
-                    if (j != columns - 1)
-                    {
-                        str = str + dataGridViewInPut_VAE.Rows[i].Cells[j].Value + ";";
-                    }
-                    else
-                    {
-                        str = str + dataGridViewInPut_VAE.Rows[i].Cells[j].Value;
-                    }
-                }
-                File.AppendAllText(path, str + Environment.NewLine);
-                str = "";
-            }
-        }
-
         private void buttonLoadData_VAE_Click(object sender, EventArgs e)
         {
             openFileDialogData_VAE.ShowDialog();
@@ -114,7 +75,6 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
             }
 
             buttonDeleteRow_VAE.Enabled = true;
-            buttonAddRow_VAE.Enabled = true;
             buttonMaxPrice_VAE.Enabled = true;
             buttonMinPrice_VAE.Enabled = true;
             buttonPriceHistogram_VAE.Enabled = true;

@@ -142,7 +142,6 @@
             // 
             // buttonAddRow_VAE
             // 
-            buttonAddRow_VAE.Enabled = false;
             buttonAddRow_VAE.Image = (Image)resources.GetObject("buttonAddRow_VAE.Image");
             buttonAddRow_VAE.Location = new Point(10, 152);
             buttonAddRow_VAE.Name = "buttonAddRow_VAE";
