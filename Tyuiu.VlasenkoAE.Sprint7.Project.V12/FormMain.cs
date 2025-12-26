@@ -103,7 +103,6 @@ namespace Tyuiu.VlasenkoAE.Sprint7.Project.V12
                     }
                 }
             }
-
             return arrayValues;
         }
 
